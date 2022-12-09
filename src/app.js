@@ -17,7 +17,7 @@ function formatDate(timestamp) {
     "Saturday",
   ];
   let day = days[date.getDay()];
-  return `${day}${hours}:${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 }
 
 function displayTemperature(response) {
@@ -27,6 +27,7 @@ function displayTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
+
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -36,7 +37,8 @@ function displayTemperature(response) {
 }
 
 let apiKey = "d7897e5f06347bde1b52647ada6bc603";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Minneapolis&appid=${apiKey}&units=metric`;
+let city = "Minneapolis";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 console.log(apiUrl);
 axios.get(apiUrl).then(displayTemperature);
